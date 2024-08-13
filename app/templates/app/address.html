@@ -1,0 +1,34 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Địa chỉ{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+ <h3>Chào mừng <span class="text-capitalize">{{request.user}}</span></h3>
+  <div class="col-sm-2 border-end">
+   <ul class="list-unstyled">
+    <li class="d-grid"><a href="{% url 'profile' %}" class="btn">Tạo hồ sơ</a></li>
+    <li class="d-grid"><a href="{% url 'address' %}" class="btn {{active}}">Xem hồ sơ đã tạo</a></li>
+   </ul>
+  </div>
+  <div class="col-sm-9 offset-sm-1">
+   <div class="row">
+    {% for ad in add %}
+    <div class="col-sm-6">
+     <div class="card">
+      <div class="card-body">
+       <h3>Địa chỉ: {{forloop.counter}}</h3>
+       <p>Tên: {{ad.name}}</p>
+       <p>Nơi cư trú: {{ad.locality}}</p>
+       <p>Thành phố: {{ad.city}}</p>
+       <p>Tỉnh: {{ad.state}}</p>
+       <p>Mã bưu chính: {{ad.zipcode}}</p>
+      </div>
+     </div>
+    </div>
+    {% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

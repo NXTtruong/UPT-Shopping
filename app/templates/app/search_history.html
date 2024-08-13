@@ -1,0 +1,23 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Lịch sử tìm kiếm{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+  <h2 class="text-center">Lịch sử tìm kiếm</h2>
+  <div class="row">
+    {% if history %}
+      <div class="col-sm-12">
+        <ul class="list-group">
+          {% for item in history %}
+          <li class="list-group-item">{{ item.query }} - {{ item.timestamp }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% else %}
+      <div class="col-sm-12">
+        <p>Bạn chưa có lịch sử tìm kiếm nào.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock main-content %}

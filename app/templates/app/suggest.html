@@ -1,0 +1,8 @@
+<!-- templates/app/suggest.html -->
+
+<h2>Đề xuất tìm kiếm</h2>
+<ul>
+  {% for item in popular_searches %}
+    <li><a href="{% url 'search' %}?q={{ item.query }}">{{ item.query }}</a></li>
+  {% endfor %}
+</ul>

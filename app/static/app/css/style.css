@@ -1,0 +1,43 @@
+.owl-carousel .item {
+  /* border: 1px solid black; */
+  font-size: 24px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.owl-next {
+  float: right;
+}
+.owl-prev {
+  float: left;
+}
+.owl-prev span {
+  font-size: 24px;
+  font-weight: bold;
+}
+.owl-next span {
+  font-size: 24px;
+  font-weight: bold;
+}
+/* Custom styling for support column */
+.support-heading {
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.support-heading h5 {
+  margin-bottom: 10px;
+}
+
+.support-chatbot {
+  background-color: #ffffff; /* White background */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.support-chatbot iframe {
+  border: none; /* Remove iframe border */
+  border-radius: 5px;
+}

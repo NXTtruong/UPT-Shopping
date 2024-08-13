@@ -1,0 +1,48 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Chi tiết sản phẩm{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-6 text-center align-self-center">
+            <img src="{{product.product_image.url}}" alt="" class="img-fluid img-thumbnail">
+        </div>
+        <div class="col-sm-5 offset-sm-1">
+            <h2>Tên sản phẩm: {{product.title}}</h2>
+            <hr>
+            <p>{{product.description}}</p> <br>
+            <h4>USD. {{product.discounted_price}} 
+                <small class="fw-light text-decoration-line-through">USD. {{product.selling_price}}</small>
+            </h4> <br>
+            
+            {% if request.user.is_authenticated %}
+                {% if item_already_in_cart %}
+                    <a href="{% url 'showcart' %}" class="btn btn-warning shadow px-5 py-2 ms-4">Quay lại giỏ hàng</a>
+                {% else %}
+                    <form action="/add-to-cart" class="d-inline">
+                        <input type="hidden" name="prod_id" value="{{ product_id }}" id="prod_id">
+                        <button type="submit" class="btn btn-primary shadow px-5 py-2">Thêm vào giỏ hàng</button>
+                    </form>
+                {% endif %}
+            {% endif %}
+
+            {% if not request.user.is_authenticated %}
+                <form action="/add-to-cart" class="d-inline">
+                    <input type="hidden" name="prod_id" value="{{ product_id }}" id="prod_id">
+                    <button type="submit" class="btn btn-primary shadow px-5 py-2">Thêm vào giỏ hàng</button>
+                </form>
+            {% endif %}
+
+            <a href="{% url 'checkout' %}" class="btn btn-danger shadow px-5 py-2 ms-4">Mua ngay</a>
+            
+            <h5 class="mt-5">Ưu đãi có sẵn</h5>
+            <ul>
+                <li>Giảm ngay 15% cho đơn hàng đầu tiên khi đăng ký tài khoản mới.</li>
+                <li>Giới thiệu bạn bè, nhận ngay 50.000 VND cho bạn và 10% giảm giá cho người bạn giới thiệu.</li>
+                <li>Miễn phí vận chuyển cho đơn hàng đầu tiên hoặc đơn hàng từ 500.000 VND trở lên.</li>
+                <li>Trở thành thành viên VIP và nhận ngay 20% giảm giá cho lần mua sắm đầu tiên cùng nhiều ưu đãi đặc quyền khác.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Kết quả tìm kiếm{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+  <h2 class="text-center">Kết quả tìm kiếm cho '{{ query }}'</h2>
+  <div class="row">
+    {% if results %}
+      <div class="col-sm-12">
+        <div class="row">
+          {% for product in results %}
+          <div class="col-sm-4 text-center mb-4">
+            <a href="{% url 'product-detail' product.pk %}" class="btn">
+              <div class="item">
+                <img src="{{ product.product_image.url }}" alt="{{ product.title }}" height="300" class="">
+                <div class="fw-bold">{{ product.title }}</div>
+                <div class="fw-bold">Rs. {{ product.discounted_price }}
+                  <small class="fw-light text-decoration-line-through">{{ product.selling_price }}</small>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% else %}
+      <div class="col-sm-12">
+        <p>Không tìm thấy sản phẩm nào phù hợp với từ khóa '{{ query }}'.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock main-content %}
